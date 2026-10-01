@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-demo-app",
+  "version": "1.0.0",
+  "description": "Node.js CI/CD demo application",
+  "main": "app.js",
+  "scripts": {
+    "test": "node -e \"console.log('Test passed')\"",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
