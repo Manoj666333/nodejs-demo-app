@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-test:
+  build-test-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +24,14 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build Docker image
-        run: docker build -t nodejs-demo-app .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-cicd-demo:latest .
+
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-cicd-demo:latest
